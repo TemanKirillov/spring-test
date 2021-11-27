@@ -8,14 +8,35 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-        <bean id="databaseCsa"
-                class="tech.onehmh.springtest.DatabaseService">
+        <context:property-placeholder location="classpath:database.properties"/>
+
+        <bean id="csaName"
+              class="tech.onehmh.springtest.DatabaseName">
                 <constructor-arg name="name" value="CSA"/>
         </bean>
 
-        <bean id="databaseLog"
-              class="tech.onehmh.springtest.DatabaseService">
+        <bean id="logName"
+              class="tech.onehmh.springtest.DatabaseName">
                 <constructor-arg name="name" value="LOG"/>
         </bean>
+
+        <bean id="databaseCsa"
+              class="tech.onehmh.springtest.CsaDatabaseService">
+                <constructor-arg ref="csaName"/>
+                <property name="userInfoTableName" value="${csa.database.user.info.table.name}"/>
+        </bean>
+
+        <bean id="databaseLog"
+              class="tech.onehmh.springtest.LogDatabaseService">
+                <constructor-arg ref="logName"/>
+        </bean>
+
+        <alias name="databaseCsa" alias="databaseDefault"/>
+
+        <bean id="userInfoService"
+              class="tech.onehmh.springtest.UserInfoService">
+                <property name="databaseService" ref="databaseDefault"/>
+        </bean>
+
 
 </beans>

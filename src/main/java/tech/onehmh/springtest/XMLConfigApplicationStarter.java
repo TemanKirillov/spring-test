@@ -17,5 +17,11 @@ public class XMLConfigApplicationStarter
 
         DatabaseService databaseLog = context.getBean("databaseLog", DatabaseService.class);
         System.out.println(databaseLog.getName());
+
+        DatabaseService databaseDefault = context.getBean("databaseDefault", DatabaseService.class);
+        System.out.println(databaseDefault.getName());
+
+        UserInfoService userInfoService = context.getBean(UserInfoService.class);
+        System.out.println(userInfoService.getUserInfo(1L));
     }
 }

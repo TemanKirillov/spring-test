@@ -1,21 +1,9 @@
 package tech.onehmh.springtest;
 
-public class DatabaseService
+public interface DatabaseService
 {
-    private String name;
+    String getName();
 
-    public DatabaseService(String name)
-    {
-        this.name = name;
-    }
+    String getUserInfoById(Long id);
 
-    public String getName()
-    {
-        return name;
-    }
-
-    public void setName(String name)
-    {
-        this.name = name;
-    }
 }
