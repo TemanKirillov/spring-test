@@ -23,5 +23,12 @@ public class XMLConfigApplicationStarter
 
         UserInfoService userInfoService = context.getBean(UserInfoService.class);
         System.out.println(userInfoService.getUserInfo(1L));
+
+        UserInfoGuid guid1 = context.getBean(UserInfoGuid.class);
+        UserInfoGuid guid2 = context.getBean(UserInfoGuid.class);
+
+        System.out.println("guid 1: " + guid1.asString());
+        System.out.println("guid 2: " + guid2.asString());
+
     }
 }

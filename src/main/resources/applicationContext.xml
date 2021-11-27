@@ -38,5 +38,16 @@
                 <property name="databaseService" ref="databaseDefault"/>
         </bean>
 
+        <alias name="databaseCsa" alias="databaseDefault"/>
+
+        <bean id="userInfoService"
+              class="tech.onehmh.springtest.UserInfoService">
+                <property name="databaseService" ref="databaseDefault"/>
+        </bean>
+
+        <bean id="userInfoGuid"
+              class="tech.onehmh.springtest.UserInfoGuid"
+              scope="prototype"
+        />
 
 </beans>
