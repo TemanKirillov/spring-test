@@ -31,4 +31,16 @@ public class CsaDatabaseService implements DatabaseService
     {
         this.userInfoTableName = userInfoTableName;
     }
+
+    public void init()
+    {
+        System.out.println("Инициализирую подключение к БД");
+    }
+
+    public void close() throws InterruptedException
+    {
+        System.out.println("Закрываю соединения с БД");
+        Thread.sleep(10000);
+    }
+
 }

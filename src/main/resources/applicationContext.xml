@@ -20,8 +20,12 @@
                 <constructor-arg name="name" value="LOG"/>
         </bean>
 
+        <!-- destroy-method почему-то не работает -->
         <bean id="databaseCsa"
-              class="tech.onehmh.springtest.CsaDatabaseService">
+              class="tech.onehmh.springtest.CsaDatabaseService"
+              init-method="init"
+              destroy-method="close"
+        >
                 <constructor-arg ref="csaName"/>
                 <property name="userInfoTableName" value="${csa.database.user.info.table.name}"/>
         </bean>
@@ -38,15 +42,13 @@
                 <property name="databaseService" ref="databaseDefault"/>
         </bean>
 
-        <alias name="databaseCsa" alias="databaseDefault"/>
-
-        <bean id="userInfoService"
-              class="tech.onehmh.springtest.UserInfoService">
-                <property name="databaseService" ref="databaseDefault"/>
-        </bean>
+        <bean id="guidFactory"
+              class="tech.onehmh.springtest.GuidFactory"/>
 
         <bean id="userInfoGuid"
               class="tech.onehmh.springtest.UserInfoGuid"
+              factory-bean="guidFactory"
+              factory-method="newUserInfoGuid"
               scope="prototype"
         />
 

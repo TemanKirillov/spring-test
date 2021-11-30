@@ -1,7 +1,5 @@
 package tech.onehmh.springtest;
 
-import org.apache.commons.lang3.RandomStringUtils;
-
 /**
  * Уникальный id для UserInfo
  */
@@ -9,9 +7,9 @@ public class UserInfoGuid
 {
     private final String guid;
 
-    public UserInfoGuid()
+    public UserInfoGuid(String guid)
     {
-        this.guid = RandomStringUtils.randomAlphanumeric(10);
+        this.guid = guid;
     }
 
     public String asString()
