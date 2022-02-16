@@ -1,0 +1,22 @@
+package tech.onehmh.springtest.anno;
+
+/**
+ * Уникальный id для UserInfo
+ *
+ * Не могу объявить его как @Component("userInfoGuid"), так как
+ *     бины создаются фабрикой {@link GuidFactoryAnno}
+ */
+public class UserInfoGuidAnno
+{
+    private final String guid;
+
+    public UserInfoGuidAnno(String guid)
+    {
+        this.guid = guid;
+    }
+
+    public String asString()
+    {
+        return guid;
+    }
+}

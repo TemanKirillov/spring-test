@@ -1,4 +1,6 @@
-package tech.onehmh.springtest;
+package tech.onehmh.springtest.xml;
+
+import tech.onehmh.springtest.common.DatabaseService;
 
 public class UserInfoService
 {

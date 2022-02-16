@@ -1,4 +1,4 @@
-package tech.onehmh.springtest;
+package tech.onehmh.springtest.xml;
 
 /**
  * Уникальный id для UserInfo

@@ -1,4 +1,4 @@
-package tech.onehmh.springtest;
+package tech.onehmh.springtest.xml;
 
 import org.apache.commons.lang3.RandomStringUtils;
 

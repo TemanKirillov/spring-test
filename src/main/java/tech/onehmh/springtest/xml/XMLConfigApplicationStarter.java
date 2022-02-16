@@ -1,7 +1,8 @@
-package tech.onehmh.springtest;
+package tech.onehmh.springtest.xml;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import tech.onehmh.springtest.common.DatabaseService;
 
 /**
  * Проверка формирования контекста Spring из xml-конфигурации

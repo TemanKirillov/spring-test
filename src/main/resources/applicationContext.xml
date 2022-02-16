@@ -11,18 +11,18 @@
         <context:property-placeholder location="classpath:database.properties"/>
 
         <bean id="csaName"
-              class="tech.onehmh.springtest.DatabaseName">
+              class="tech.onehmh.springtest.common.DatabaseName">
                 <constructor-arg name="name" value="CSA"/>
         </bean>
 
         <bean id="logName"
-              class="tech.onehmh.springtest.DatabaseName">
+              class="tech.onehmh.springtest.common.DatabaseName">
                 <constructor-arg name="name" value="LOG"/>
         </bean>
 
         <!-- destroy-method почему-то не работает -->
         <bean id="databaseCsa"
-              class="tech.onehmh.springtest.CsaDatabaseService"
+              class="tech.onehmh.springtest.xml.CsaDatabaseService"
               init-method="init"
               destroy-method="close"
         >
@@ -31,22 +31,22 @@
         </bean>
 
         <bean id="databaseLog"
-              class="tech.onehmh.springtest.LogDatabaseService">
+              class="tech.onehmh.springtest.xml.LogDatabaseService">
                 <constructor-arg ref="logName"/>
         </bean>
 
         <alias name="databaseCsa" alias="databaseDefault"/>
 
         <bean id="userInfoService"
-              class="tech.onehmh.springtest.UserInfoService">
+              class="tech.onehmh.springtest.xml.UserInfoService">
                 <property name="databaseService" ref="databaseDefault"/>
         </bean>
 
         <bean id="guidFactory"
-              class="tech.onehmh.springtest.GuidFactory"/>
+              class="tech.onehmh.springtest.xml.GuidFactory"/>
 
         <bean id="userInfoGuid"
-              class="tech.onehmh.springtest.UserInfoGuid"
+              class="tech.onehmh.springtest.xml.UserInfoGuid"
               factory-bean="guidFactory"
               factory-method="newUserInfoGuid"
               scope="prototype"

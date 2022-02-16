@@ -1,4 +1,4 @@
-package tech.onehmh.springtest;
+package tech.onehmh.springtest.common;
 
 public class DatabaseName
 {
