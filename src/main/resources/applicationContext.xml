@@ -22,7 +22,7 @@
 
         <!-- destroy-method почему-то не работает -->
         <bean id="databaseCsa"
-              class="tech.onehmh.springtest.xml.CsaDatabaseService"
+              class="tech.onehmh.springtest.noscan.CsaDatabaseService"
               init-method="init"
               destroy-method="close"
         >
@@ -31,22 +31,22 @@
         </bean>
 
         <bean id="databaseLog"
-              class="tech.onehmh.springtest.xml.LogDatabaseService">
+              class="tech.onehmh.springtest.noscan.LogDatabaseService">
                 <constructor-arg ref="logName"/>
         </bean>
 
         <alias name="databaseCsa" alias="databaseDefault"/>
 
         <bean id="userInfoService"
-              class="tech.onehmh.springtest.xml.UserInfoService">
+              class="tech.onehmh.springtest.noscan.UserInfoService">
                 <property name="databaseService" ref="databaseDefault"/>
         </bean>
 
         <bean id="guidFactory"
-              class="tech.onehmh.springtest.xml.GuidFactory"/>
+              class="tech.onehmh.springtest.noscan.GuidFactory"/>
 
         <bean id="userInfoGuid"
-              class="tech.onehmh.springtest.xml.UserInfoGuid"
+              class="tech.onehmh.springtest.noscan.UserInfoGuid"
               factory-bean="guidFactory"
               factory-method="newUserInfoGuid"
               scope="prototype"

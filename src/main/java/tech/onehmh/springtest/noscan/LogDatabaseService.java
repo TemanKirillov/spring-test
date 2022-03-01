@@ -1,4 +1,4 @@
-package tech.onehmh.springtest.xml;
+package tech.onehmh.springtest.noscan;
 
 import tech.onehmh.springtest.common.DatabaseName;
 import tech.onehmh.springtest.common.DatabaseService;

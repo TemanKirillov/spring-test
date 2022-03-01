@@ -1,4 +1,4 @@
-package tech.onehmh.springtest.anno;
+package tech.onehmh.springtest.scan;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

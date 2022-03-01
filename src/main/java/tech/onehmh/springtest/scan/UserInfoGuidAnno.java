@@ -1,4 +1,4 @@
-package tech.onehmh.springtest.anno;
+package tech.onehmh.springtest.scan;
 
 /**
  * Уникальный id для UserInfo

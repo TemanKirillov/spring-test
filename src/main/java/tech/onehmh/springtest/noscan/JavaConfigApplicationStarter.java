@@ -1,20 +1,21 @@
-package tech.onehmh.springtest.xml;
+package tech.onehmh.springtest.noscan;
 
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import tech.onehmh.springtest.common.DatabaseService;
 
 /**
- * Проверка формирования контекста Spring из xml-конфигурации
+ * Проверка формирования контекста Spring из Java-конфигурации без сканирования аннотаций
  */
-public class XMLConfigApplicationStarter
+public class JavaConfigApplicationStarter
 {
     public static void main(String[] args)
     {
-        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        ApplicationContext context = new AnnotationConfigApplicationContext(SpringJavaConfig.class);
 
         DatabaseService databaseCsa = context.getBean("databaseCsa", DatabaseService.class);
         System.out.println(databaseCsa.getName());
+        System.out.println(databaseCsa.getUserInfoById(1L));
 
         DatabaseService databaseLog = context.getBean("databaseLog", DatabaseService.class);
         System.out.println(databaseLog.getName());

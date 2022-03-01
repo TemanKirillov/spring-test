@@ -1,4 +1,4 @@
-package tech.onehmh.springtest.anno;
+package tech.onehmh.springtest.scan;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.FactoryBean;
