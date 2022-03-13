@@ -7,7 +7,11 @@
     <groupId>tech.onehmh</groupId>
     <artifactId>spring-test</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <modules>
+        <module>spring-test-mvc-xml</module>
+        <module>spring-test-mvc-java</module>
+    </modules>
+    <packaging>pom</packaging>
 
     <name>spring-test Maven Webapp</name>
 
