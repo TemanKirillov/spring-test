@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Отредактировать настройку приложения</title>
+</head>
+<body>
+<form th:method="PATCH"
+      th:action="@{/appProperties/{id}(id=${appProperty.getId()})}"
+      th:object="${appProperty}">
+
+    <label for="keyAppProperty">KEY</label>
+    <input type="text" th:field="*{propertyKey}" id="keyAppProperty">
+
+    <br/>
+
+    <label for="valueAppProperty">VALUE</label>
+    <input type="text" th:field="*{propertyValue}" id="valueAppProperty">
+
+    <br/>
+
+    <input type="submit" value="Update">
+</form>
+</body>
+</html>

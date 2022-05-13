@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/appProperties")
 public class AppPropertiesController
 {
+    private static final String APP_PROPERTY_ATTRIBUTE_NAME = "appProperty";
+
     private final AppPropertyDAO dao;
 
     @Autowired
@@ -35,19 +37,38 @@ public class AppPropertiesController
             @PathVariable("id") Long id,
             Model model)
     {
-        model.addAttribute("appProperty", dao.getById(id).orElse(null));
+        model.addAttribute(APP_PROPERTY_ATTRIBUTE_NAME, dao.getById(id).orElse(null));
         return "appProperties/showAppProperty";
     }
 
     @GetMapping("/new")
     public String addNewAppPropertyForm(Model model)
     {
-        model.addAttribute("appProperty", AppProperty.builder().build());
+        model.addAttribute(APP_PROPERTY_ATTRIBUTE_NAME, AppProperty.builder().build());
         return "appProperties/newAppPropertyForm";
     }
 
+    @GetMapping("/{id}/edit")
+    public String updateAppPropertyForm(
+            @PathVariable("id") Long id,
+            Model model)
+    {
+        model.addAttribute(APP_PROPERTY_ATTRIBUTE_NAME, dao.getById(id).orElse(null));
+        return "appProperties/updateAppPropertyForm";
+    }
+
+    @PatchMapping("/{id}")
+    public String updateAppProperty(
+            @ModelAttribute(APP_PROPERTY_ATTRIBUTE_NAME) AppProperty appProperty,
+            @PathVariable("id") Long id
+    )
+    {
+        dao.updateAppProperty(id, appProperty);
+        return "redirect:/appProperties";
+    }
+
     @PostMapping()
-    public String createNewAppProperty(@ModelAttribute("appProperty") AppProperty appProperty)
+    public String createNewAppProperty(@ModelAttribute(APP_PROPERTY_ATTRIBUTE_NAME) AppProperty appProperty)
     {
         dao.addAppProperty(appProperty);
         return "redirect:/appProperties";

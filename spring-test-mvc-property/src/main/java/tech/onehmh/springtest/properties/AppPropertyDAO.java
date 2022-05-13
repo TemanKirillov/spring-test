@@ -48,6 +48,27 @@ public class AppPropertyDAO
         properties.add(appProperty);
     }
 
+    /**
+     * Обновить настройку с заданным id новыми значениями
+     *
+     * @param id идентификатор редактируемой настройки
+     * @param appProperty новые значения для настройки
+     */
+    public void updateAppProperty(Long id, AppProperty appProperty)
+    {
+        Optional<AppProperty> property = getById(id);
+        if (property.isPresent())
+        {
+            AppProperty prop = property.get();
+            prop.setPropertyKey(appProperty.getPropertyKey());
+            prop.setPropertyValue(appProperty.getPropertyValue());
+        }
+        else
+        {
+            throw new IllegalArgumentException("Настройки с id " + id + " не существует");
+        }
+    }
+
     private List<AppProperty> getDefaultProperties()
     {
         List<AppProperty> result = new ArrayList<>();
