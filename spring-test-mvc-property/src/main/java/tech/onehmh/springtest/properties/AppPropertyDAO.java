@@ -38,6 +38,16 @@ public class AppPropertyDAO
                 .findFirst();
     }
 
+    /**
+     * Добавить новую настройку
+     *
+     * @param appProperty добавляемая настройка
+     */
+    public void addAppProperty(AppProperty appProperty)
+    {
+        properties.add(appProperty);
+    }
+
     private List<AppProperty> getDefaultProperties()
     {
         List<AppProperty> result = new ArrayList<>();

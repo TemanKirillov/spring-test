@@ -3,9 +3,7 @@ package tech.onehmh.springtest.properties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Контроллер настроек приложения
@@ -39,5 +37,19 @@ public class AppPropertiesController
     {
         model.addAttribute("appProperty", dao.getById(id).orElse(null));
         return "appProperties/showAppProperty";
+    }
+
+    @GetMapping("/new")
+    public String addNewAppPropertyForm(Model model)
+    {
+        model.addAttribute("appProperty", AppProperty.builder().build());
+        return "appProperties/newAppPropertyForm";
+    }
+
+    @PostMapping()
+    public String createNewAppProperty(@ModelAttribute("appProperty") AppProperty appProperty)
+    {
+        dao.addAppProperty(appProperty);
+        return "redirect:/appProperties";
     }
 }
