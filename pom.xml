@@ -10,6 +10,7 @@
     <modules>
         <module>spring-test-mvc-xml</module>
         <module>spring-test-mvc-java</module>
+        <module>spring-test-mvc-property</module>
     </modules>
     <packaging>pom</packaging>
 

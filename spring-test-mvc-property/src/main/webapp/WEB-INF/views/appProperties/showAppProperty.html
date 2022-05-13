@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Просмотр настройки приложения</title>
+</head>
+<body>
+    <p>ID: <span th:text="${appProperty.getId()}"></span></p>
+    <p>KEY: <span th:text="${appProperty.getPropertyKey()}"></span></p>
+    <p>VALUE: <span th:text="${appProperty.getPropertyValue()}"></span></p>
+    <a th:href="@{/appProperties}">ВСЕ</a>
+</body>
+</html>
