@@ -1,8 +1,5 @@
 package tech.onehmh.springtest.properties;
 
-import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,18 +9,12 @@ import java.util.Optional;
  * @author Kirillov-AS
  * @since 12.05.2022
  */
-@Component
-public class AppPropertyDAO
+public interface AppPropertyDAO
 {
-    private final List<AppProperty> properties = getDefaultProperties();
-
     /**
      * @return все настройки
      */
-    public List<AppProperty> getAllAppProperties()
-    {
-        return properties;
-    }
+    List<AppProperty> getAllAppProperties();
 
     /**
      * Вернуть настройку по id, если такая есть
@@ -31,22 +22,14 @@ public class AppPropertyDAO
      * @param id идентификатор
      * @return настройка приложения
      */
-    public Optional<AppProperty> getById(Long id)
-    {
-        return properties.stream()
-                .filter(appProperty -> appProperty.getId().equals(id))
-                .findFirst();
-    }
+    Optional<AppProperty> getById(Long id);
 
     /**
      * Добавить новую настройку
      *
      * @param appProperty добавляемая настройка
      */
-    public void addAppProperty(AppProperty appProperty)
-    {
-        properties.add(appProperty);
-    }
+    void addAppProperty(AppProperty appProperty);
 
     /**
      * Обновить настройку с заданным id новыми значениями
@@ -54,49 +37,12 @@ public class AppPropertyDAO
      * @param id идентификатор редактируемой настройки
      * @param appProperty новые значения для настройки
      */
-    public void updateAppProperty(Long id, AppProperty appProperty)
-    {
-        Optional<AppProperty> property = getById(id);
-        if (property.isPresent())
-        {
-            AppProperty prop = property.get();
-            prop.setPropertyKey(appProperty.getPropertyKey());
-            prop.setPropertyValue(appProperty.getPropertyValue());
-        }
-        else
-        {
-            throw new IllegalArgumentException("Настройки с id " + id + " не существует");
-        }
-    }
+    void updateAppProperty(Long id, AppProperty appProperty);
 
     /**
      * Удалить настройку приложения по её id
      *
      * @param id id удаляемой настройки
      */
-    public void deleteAppProperty(Long id)
-    {
-        properties.removeIf(appProperty -> appProperty.getId().equals(id));
-    }
-
-    private List<AppProperty> getDefaultProperties()
-    {
-        List<AppProperty> result = new ArrayList<>();
-
-        result.add(AppProperty.builder()
-                .id(1L)
-                .propertyKey("db.timeout")
-                .propertyValue("20")
-                .build()
-        );
-
-        result.add(AppProperty.builder()
-                .id(2L)
-                .propertyKey("db.name.default")
-                .propertyValue("TDB")
-                .build()
-        );
-
-        return result;
-    }
+    void deleteAppProperty(Long id);
 }
