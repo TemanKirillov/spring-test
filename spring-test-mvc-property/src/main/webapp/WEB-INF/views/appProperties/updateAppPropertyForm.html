@@ -11,11 +11,19 @@
 
     <label for="keyAppProperty">KEY</label>
     <input type="text" th:field="*{propertyKey}" id="keyAppProperty">
+    <div style="color: red"
+         th:if="${#fields.hasErrors('propertyKey')}"
+         th:errors="*{propertyKey}">
+    </div>
 
     <br/>
 
     <label for="valueAppProperty">VALUE</label>
     <input type="text" th:field="*{propertyValue}" id="valueAppProperty">
+    <div style="color: red"
+         th:if="${#fields.hasErrors('propertyValue')}"
+         th:errors="*{propertyValue}">
+    </div>
 
     <br/>
 

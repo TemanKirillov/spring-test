@@ -3,7 +3,10 @@ package tech.onehmh.springtest.properties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 /**
  * Контроллер настроек приложения
@@ -60,17 +63,28 @@ public class AppPropertiesController
 
     @PatchMapping("/{id}")
     public String updateAppProperty(
-            @ModelAttribute(APP_PROPERTY_ATTRIBUTE_NAME) AppProperty appProperty,
+            @ModelAttribute(APP_PROPERTY_ATTRIBUTE_NAME) @Valid AppProperty appProperty,
+            BindingResult bindingResult,
             @PathVariable("id") Long id
     )
     {
+        if (bindingResult.hasErrors())
+        {
+            return "appProperties/updateAppPropertyForm";
+        }
         dao.updateAppProperty(id, appProperty);
         return REDIRECT_TO_APP_PROPERTIES;
     }
 
     @PostMapping()
-    public String createNewAppProperty(@ModelAttribute(APP_PROPERTY_ATTRIBUTE_NAME) AppProperty appProperty)
+    public String createNewAppProperty(
+            @ModelAttribute(APP_PROPERTY_ATTRIBUTE_NAME) @Valid AppProperty appProperty,
+            BindingResult bindingResult)
     {
+        if (bindingResult.hasErrors())
+        {
+            return "appProperties/newAppPropertyForm";
+        }
         dao.addAppProperty(appProperty);
         return REDIRECT_TO_APP_PROPERTIES;
     }
