@@ -13,6 +13,10 @@
     <a th:href="@{/appProperties/{id}/edit(id=${appProperty.getId()})}">
         Редактировать
     </a>
+    <form th:method="DELETE"
+          th:action="@{/appProperties/{id}(id=${appProperty.getId()})}">
+        <input type="submit" value="УДАЛИТЬ"/>
+    </form>
 </div>
 
 <a th:href="@{/appProperties/new}">

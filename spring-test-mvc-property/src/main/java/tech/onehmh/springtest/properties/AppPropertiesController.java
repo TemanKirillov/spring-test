@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 public class AppPropertiesController
 {
     private static final String APP_PROPERTY_ATTRIBUTE_NAME = "appProperty";
+    private static final String REDIRECT_TO_APP_PROPERTIES = "redirect:/appProperties";
 
     private final AppPropertyDAO dao;
 
@@ -64,13 +65,20 @@ public class AppPropertiesController
     )
     {
         dao.updateAppProperty(id, appProperty);
-        return "redirect:/appProperties";
+        return REDIRECT_TO_APP_PROPERTIES;
     }
 
     @PostMapping()
     public String createNewAppProperty(@ModelAttribute(APP_PROPERTY_ATTRIBUTE_NAME) AppProperty appProperty)
     {
         dao.addAppProperty(appProperty);
-        return "redirect:/appProperties";
+        return REDIRECT_TO_APP_PROPERTIES;
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteAppProperty(@PathVariable("id") Long id)
+    {
+        dao.deleteAppProperty(id);
+        return REDIRECT_TO_APP_PROPERTIES;
     }
 }

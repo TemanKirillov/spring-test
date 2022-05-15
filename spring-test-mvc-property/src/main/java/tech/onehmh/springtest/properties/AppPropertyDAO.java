@@ -69,6 +69,16 @@ public class AppPropertyDAO
         }
     }
 
+    /**
+     * Удалить настройку приложения по её id
+     *
+     * @param id id удаляемой настройки
+     */
+    public void deleteAppProperty(Long id)
+    {
+        properties.removeIf(appProperty -> appProperty.getId().equals(id));
+    }
+
     private List<AppProperty> getDefaultProperties()
     {
         List<AppProperty> result = new ArrayList<>();
