@@ -1,6 +1,7 @@
 package tech.onehmh.springtest.properties;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,7 +25,7 @@ public class AppPropertiesController
     private final AppPropertyDAO dao;
 
     @Autowired
-    public AppPropertiesController(AppPropertyDAO dao)
+    public AppPropertiesController(@Qualifier("appPropertyH2DbDAO") AppPropertyDAO dao)
     {
         this.dao = dao;
     }

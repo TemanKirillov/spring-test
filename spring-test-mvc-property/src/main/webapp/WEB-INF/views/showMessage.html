@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Просмотр сообщения</title>
+</head>
+<body>
+    <p th:if="${hasError}">Ошибка: <span th:text="${error.toString()}"></span></p>
+    <p th:if="${!hasError}">Сообщение: <span th:text="${message}"></span></p>
+</body>
+</html>
