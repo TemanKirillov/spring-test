@@ -5,6 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import tech.onehmh.springtest.db.TableDefinition;
+import tech.onehmh.springtest.db.h2.jdbc.H2JdbcDbDefinition;
+import tech.onehmh.springtest.properties.AppProperty;
 
 /**
  * Контроллер для выполнения DDL операции для БД H2
@@ -21,13 +24,13 @@ public class H2DbDefinitionController
     private static final String ERROR_ATTR = "error";
     private static final String SHOW_MESSAGE_VIEW_NAME = "showMessage";
 
-    H2DbDefinition definitionDbObject;
-    AppPropertyTableDefinition appPropertyTableDefinition;
+    H2JdbcDbDefinition definitionDbObject;
+    TableDefinition<AppProperty> appPropertyTableDefinition;
 
     @Autowired
     public H2DbDefinitionController(
-            H2DbDefinition definitionDbObject,
-            AppPropertyTableDefinition appPropertyTableDefinition
+            H2JdbcDbDefinition definitionDbObject,
+            TableDefinition<AppProperty> appPropertyTableDefinition
     )
     {
         this.definitionDbObject = definitionDbObject;

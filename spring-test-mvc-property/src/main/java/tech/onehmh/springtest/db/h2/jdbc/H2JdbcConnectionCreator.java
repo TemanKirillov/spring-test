@@ -1,4 +1,4 @@
-package tech.onehmh.springtest.db.h2;
+package tech.onehmh.springtest.db.h2.jdbc;
 
 import org.springframework.stereotype.Component;
 
@@ -8,9 +8,9 @@ import java.sql.*;
  * Помощник по созданию соединений к БД H2
  */
 @Component
-public class H2ConnectionCreator
+public class H2JdbcConnectionCreator
 {
-    private static final String DB_PATH = "/Users/USER/work/databases/properties.mv.db";
+    private static final String DB_PATH = "/Users/U19011169/work/databases/properties.mv.db";
     private static final String DB_JDBC_PATH = "jdbc:h2:~/work/databases/properties";
     private static final String USER_H2_DEFAULT = "sa";
     private static final String PASSWORD_H2_DEFAULT = "";

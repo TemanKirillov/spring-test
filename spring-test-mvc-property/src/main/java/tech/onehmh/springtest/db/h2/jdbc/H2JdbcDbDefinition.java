@@ -1,7 +1,8 @@
-package tech.onehmh.springtest.db.h2;
+package tech.onehmh.springtest.db.h2.jdbc;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import tech.onehmh.springtest.db.DbDefinition;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -17,19 +18,17 @@ import java.sql.SQLException;
  * @since 22.05.2022
  */
 @Component
-public class H2DbDefinition
+public class H2JdbcDbDefinition implements DbDefinition
 {
-    private final H2ConnectionCreator connectionCreator;
+    private final H2JdbcConnectionCreator connectionCreator;
 
     @Autowired
-    public H2DbDefinition(H2ConnectionCreator connectionCreator)
+    public H2JdbcDbDefinition(H2JdbcConnectionCreator connectionCreator)
     {
         this.connectionCreator = connectionCreator;
     }
 
-    /**
-     * Создать пустую БД
-     */
+    @Override
     public void createDb()
     {
         if (isExists())
@@ -49,9 +48,7 @@ public class H2DbDefinition
         }
     }
 
-    /**
-     * Удалить БД
-     */
+    @Override
     public void deleteDb()
     {
         Path path = Paths.get(connectionCreator.getDbPath());

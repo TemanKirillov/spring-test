@@ -1,7 +1,9 @@
-package tech.onehmh.springtest.db.h2;
+package tech.onehmh.springtest.db.h2.jdbc;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import tech.onehmh.springtest.db.SQLHelper;
+import tech.onehmh.springtest.db.TableManipulation;
 import tech.onehmh.springtest.properties.AppProperty;
 
 import java.sql.*;
@@ -16,17 +18,17 @@ import java.util.Optional;
  * @since 24.05.2022
  */
 @Component
-public class AppPropertyTableManipulation implements TableManipulation<AppProperty, Long>
+public class AppPropertyJdbcTableManipulation implements TableManipulation<AppProperty, Long>
 {
     private static final String ID_COLUMN = "ID";
     private static final String PROPERTY_KEY_COLUMN = "PROPERTY_KEY";
     private static final String PROPERTY_VALUE_COLUMN = "PROPERTY_VALUE";
 
-    private final H2ConnectionCreator connectionCreator;
+    private final H2JdbcConnectionCreator connectionCreator;
     private final SQLHelper sqlHelper;
 
     @Autowired
-    public AppPropertyTableManipulation(H2ConnectionCreator connectionCreator, SQLHelper sqlHelper)
+    public AppPropertyJdbcTableManipulation(H2JdbcConnectionCreator connectionCreator, SQLHelper sqlHelper)
     {
         this.connectionCreator = connectionCreator;
         this.sqlHelper = sqlHelper;

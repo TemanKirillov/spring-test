@@ -1,10 +1,13 @@
-package tech.onehmh.springtest.db.h2;
+package tech.onehmh.springtest.db;
 
 import java.util.List;
 import java.util.Optional;
 
 /**
  * Операции для DML операций над сущностью таблицы
+ *
+ * @param <T> тип сущности, которая хранится в таблице
+ * @param <K> тип ключа первичного ключа
  *
  * @author Kirillov-AS
  * @since 31.05.2022

@@ -1,4 +1,4 @@
-package tech.onehmh.springtest.db.h2;
+package tech.onehmh.springtest.db;
 
 import org.springframework.stereotype.Component;
 

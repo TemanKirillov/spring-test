@@ -2,25 +2,25 @@ package tech.onehmh.springtest.properties;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import tech.onehmh.springtest.db.h2.AppPropertyTableManipulation;
+import tech.onehmh.springtest.db.TableManipulation;
 
 import java.util.List;
 import java.util.Optional;
 
 /**
  * DAO для работы с {@link AppProperty},
- *    которые хранятся в БД H2
+ *    которые хранятся в БД
  *
  * @author Kirillov-AS
  * @since 24.05.2022
  */
 @Component
-public class AppPropertyH2DbDAO implements AppPropertyDAO
+public class AppPropertyDbDAO implements AppPropertyDAO
 {
-    private final AppPropertyTableManipulation table;
+    private final TableManipulation<AppProperty, Long> table;
 
     @Autowired
-    public AppPropertyH2DbDAO(AppPropertyTableManipulation table)
+    public AppPropertyDbDAO(TableManipulation<AppProperty, Long> table)
     {
         this.table = table;
     }

@@ -1,7 +1,9 @@
-package tech.onehmh.springtest.db.h2;
+package tech.onehmh.springtest.db.h2.jdbc;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import tech.onehmh.springtest.db.SQLHelper;
+import tech.onehmh.springtest.db.TableDefinition;
 import tech.onehmh.springtest.properties.AppProperty;
 
 import java.sql.Connection;
@@ -15,21 +17,19 @@ import java.sql.Statement;
  * @since 24.05.2022
  */
 @Component
-public class AppPropertyTableDefinition
+public class AppPropertyJdbcTableDefinition implements TableDefinition<AppProperty>
 {
-    private final H2ConnectionCreator connectionCreator;
+    private final H2JdbcConnectionCreator connectionCreator;
     private final SQLHelper sqlHelper;
 
     @Autowired
-    public AppPropertyTableDefinition(H2ConnectionCreator connectionCreator, SQLHelper sqlHelper)
+    public AppPropertyJdbcTableDefinition(H2JdbcConnectionCreator connectionCreator, SQLHelper sqlHelper)
     {
         this.connectionCreator = connectionCreator;
         this.sqlHelper = sqlHelper;
     }
 
-    /**
-     * Создать таблицу
-     */
+    @Override
     public void createTable()
     {
         try (

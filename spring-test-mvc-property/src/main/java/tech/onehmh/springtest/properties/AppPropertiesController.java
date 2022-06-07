@@ -25,7 +25,7 @@ public class AppPropertiesController
     private final AppPropertyDAO dao;
 
     @Autowired
-    public AppPropertiesController(@Qualifier("appPropertyH2DbDAO") AppPropertyDAO dao)
+    public AppPropertiesController(@Qualifier("appPropertyDbDAO") AppPropertyDAO dao)
     {
         this.dao = dao;
     }
