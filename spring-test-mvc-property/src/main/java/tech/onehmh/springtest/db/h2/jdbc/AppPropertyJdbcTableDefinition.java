@@ -2,8 +2,8 @@ package tech.onehmh.springtest.db.h2.jdbc;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import tech.onehmh.springtest.db.SQLHelper;
 import tech.onehmh.springtest.db.TableDefinition;
+import tech.onehmh.springtest.db.h2.H2AppPropertySQL;
 import tech.onehmh.springtest.properties.AppProperty;
 
 import java.sql.Connection;
@@ -20,13 +20,11 @@ import java.sql.Statement;
 public class AppPropertyJdbcTableDefinition implements TableDefinition<AppProperty>
 {
     private final H2JdbcConnectionCreator connectionCreator;
-    private final SQLHelper sqlHelper;
 
     @Autowired
-    public AppPropertyJdbcTableDefinition(H2JdbcConnectionCreator connectionCreator, SQLHelper sqlHelper)
+    public AppPropertyJdbcTableDefinition(H2JdbcConnectionCreator connectionCreator)
     {
         this.connectionCreator = connectionCreator;
-        this.sqlHelper = sqlHelper;
     }
 
     @Override
@@ -37,7 +35,7 @@ public class AppPropertyJdbcTableDefinition implements TableDefinition<AppProper
                 Statement statement = connection.createStatement()
         )
         {
-            String sql = sqlHelper.readSqlFromResources("sql/properties/create_properties.sql");
+            String sql = H2AppPropertySQL.CREATE_PROPERTIES.getSqlAsString();
             statement.execute(sql);
         }
         catch (SQLException e)

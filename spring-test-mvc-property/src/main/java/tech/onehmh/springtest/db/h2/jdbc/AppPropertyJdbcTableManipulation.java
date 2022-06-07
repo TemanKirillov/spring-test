@@ -2,8 +2,8 @@ package tech.onehmh.springtest.db.h2.jdbc;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import tech.onehmh.springtest.db.SQLHelper;
 import tech.onehmh.springtest.db.TableManipulation;
+import tech.onehmh.springtest.db.h2.H2AppPropertySQL;
 import tech.onehmh.springtest.properties.AppProperty;
 
 import java.sql.*;
@@ -25,13 +25,11 @@ public class AppPropertyJdbcTableManipulation implements TableManipulation<AppPr
     private static final String PROPERTY_VALUE_COLUMN = "PROPERTY_VALUE";
 
     private final H2JdbcConnectionCreator connectionCreator;
-    private final SQLHelper sqlHelper;
 
     @Autowired
-    public AppPropertyJdbcTableManipulation(H2JdbcConnectionCreator connectionCreator, SQLHelper sqlHelper)
+    public AppPropertyJdbcTableManipulation(H2JdbcConnectionCreator connectionCreator)
     {
         this.connectionCreator = connectionCreator;
-        this.sqlHelper = sqlHelper;
     }
 
     @Override
@@ -42,7 +40,7 @@ public class AppPropertyJdbcTableManipulation implements TableManipulation<AppPr
                 Statement statement = connection.createStatement()
         )
         {
-            String sql = sqlHelper.readSqlFromResources("sql/properties/select_all_properties.sql");
+            String sql = H2AppPropertySQL.SELECT_ALL_PROPERTIES.getSqlAsString();
             ResultSet resultSet = statement.executeQuery(sql);
             List<AppProperty> result = new ArrayList<>();
 
@@ -61,7 +59,7 @@ public class AppPropertyJdbcTableManipulation implements TableManipulation<AppPr
     @Override
     public Optional<AppProperty> getById(Long id)
     {
-        String sql = sqlHelper.readSqlFromResources("sql/properties/select_property_by_id.sql");
+        String sql = H2AppPropertySQL.SELECT_PROPERTY_BY_ID.getSqlAsString();
 
         try (
                 Connection connection = connectionCreator.getConnection();
@@ -90,7 +88,7 @@ public class AppPropertyJdbcTableManipulation implements TableManipulation<AppPr
     @Override
     public void add(AppProperty appProperty)
     {
-        String sql = sqlHelper.readSqlFromResources("sql/properties/insert_property.sql");
+        String sql = H2AppPropertySQL.INSERT_PROPERTY.getSqlAsString();
 
         try (
                 Connection connection = connectionCreator.getConnection();
@@ -111,7 +109,7 @@ public class AppPropertyJdbcTableManipulation implements TableManipulation<AppPr
     @Override
     public void update(Long id, AppProperty appProperty)
     {
-        String sql = sqlHelper.readSqlFromResources("sql/properties/update_property.sql");
+        String sql = H2AppPropertySQL.UPDATE_PROPERTY.getSqlAsString();
 
         try (
                 Connection connection = connectionCreator.getConnection();
@@ -132,7 +130,7 @@ public class AppPropertyJdbcTableManipulation implements TableManipulation<AppPr
     @Override
     public void delete(Long id)
     {
-        String sql = sqlHelper.readSqlFromResources("sql/properties/delete_property.sql");
+        String sql = H2AppPropertySQL.DELETE_PROPERTY.getSqlAsString();
 
         try (
                 Connection connection = connectionCreator.getConnection();
