@@ -1,6 +1,7 @@
 package tech.onehmh.springtest.properties;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import tech.onehmh.springtest.db.TableManipulation;
 
@@ -20,7 +21,9 @@ public class AppPropertyDbDAO implements AppPropertyDAO
     private final TableManipulation<AppProperty, Long> table;
 
     @Autowired
-    public AppPropertyDbDAO(TableManipulation<AppProperty, Long> table)
+    public AppPropertyDbDAO(
+            @Qualifier("appPropertyJdbcTemplateTableManipulation")
+            TableManipulation<AppProperty, Long> table)
     {
         this.table = table;
     }

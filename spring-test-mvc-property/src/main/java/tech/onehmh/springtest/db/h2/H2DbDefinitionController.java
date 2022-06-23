@@ -1,12 +1,13 @@
 package tech.onehmh.springtest.db.h2;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import tech.onehmh.springtest.db.DbDefinition;
 import tech.onehmh.springtest.db.TableDefinition;
-import tech.onehmh.springtest.db.h2.jdbc.H2JdbcDbDefinition;
 import tech.onehmh.springtest.properties.AppProperty;
 
 /**
@@ -24,12 +25,14 @@ public class H2DbDefinitionController
     private static final String ERROR_ATTR = "error";
     private static final String SHOW_MESSAGE_VIEW_NAME = "showMessage";
 
-    H2JdbcDbDefinition definitionDbObject;
+    DbDefinition definitionDbObject;
     TableDefinition<AppProperty> appPropertyTableDefinition;
 
     @Autowired
     public H2DbDefinitionController(
-            H2JdbcDbDefinition definitionDbObject,
+            @Qualifier("h2JdbcTemplateDbDefinition")
+            DbDefinition definitionDbObject,
+            @Qualifier("appPropertyJdbcTemplateTableDefinition")
             TableDefinition<AppProperty> appPropertyTableDefinition
     )
     {
